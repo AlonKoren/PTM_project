@@ -30,7 +30,7 @@ public class Matrix_test
                 }
                 System.out.println();
 
-                Matrix matrix=new Matrix(matrix1);
+                Matrix matrix=new Matrix(matrix1,new Index(0,0),new Index(matrix1.length-1,matrix1.length-1));
                 BackTrace<Index, Index> backTrace= (goalState, initialState) -> {
                     ArrayList<State<Index>> arrayList=new ArrayList<>();
                     State<Index> current=goalState;

@@ -8,67 +8,34 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
-class Index
-{
-    public int row;
-    public int column;
-
-    public Index(int row, int column)
-    {
-        this.row = row;
-        this.column = column;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "(" + row +
-                "," + column +
-                ')';
-    }
-
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        Index index = (Index) o;
-        return row == index.row && column == index.column;
-    }
-
-    @Override
-    public int hashCode()
-    {
-        return Objects.hash(row, column);
-    }
-}
-
 public class Matrix implements Searchable<Index>
 {
     private int rows;
     private int columns;
     private int[][] matrix;
+    private Index enteryIndex;
+    private Index exitIndex;
 
 
     public Matrix()
     {
-        this(new int[0][0]);
+        this(new int[0][0],null,null);
     }
 
-    public Matrix(int[][] matrix)
+    public Matrix(int[][] matrix,Index enteryIndex,Index exitIndex)
     {
         this(matrix.length,
                 (matrix.length>0)?matrix[0].length:0,
-                matrix);
+                matrix,enteryIndex,exitIndex);
     }
 
-    private Matrix(int rows, int columns, int[][] matrix)
+    private Matrix(int rows, int columns, int[][] matrix,Index enteryIndex,Index exitIndex)
     {
         this.rows = rows;
         this.columns = columns;
         this.matrix = matrix;
+        this.enteryIndex=enteryIndex;
+        this.exitIndex=exitIndex;
     }
 
     @Override
@@ -77,15 +44,15 @@ public class Matrix implements Searchable<Index>
         double cost=0;
         try
         {
-            cost=this.matrix[0][0];
+            cost=this.matrix[enteryIndex.row][enteryIndex.column];
         }catch (Exception ignore){}
-        return new State<>(new Index(0,0),cost,null);
+        return new State<>(enteryIndex,cost,null);
     }
 
     @Override
     public boolean isGoalState(State<Index> state)
     {
-        return(state.getState().row==rows-1 && state.getState().column==columns-1);
+        return(exitIndex.equals(state.getState()));
     }
 
     @Override
