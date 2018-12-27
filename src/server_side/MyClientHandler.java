@@ -1,6 +1,5 @@
 package server_side;
 
-import Algorithms.BackTrace;
 import Algorithms.BestFirstSearch;
 import Algorithms.Searcher;
 import Algorithms.State;
@@ -14,6 +13,13 @@ import java.util.Collection;
 
 public class MyClientHandler implements ClientHandler
 {
+
+    private CacheManager<Matrix,String> CacheManager;
+
+    public MyClientHandler(CacheManager<Matrix,String> CacheManager)
+    {
+        this.CacheManager=CacheManager;
+    }
 
     @Override
     public void handleClient(InputStream inFromClient, OutputStream outToClient)
@@ -42,39 +48,56 @@ public class MyClientHandler implements ClientHandler
 
 
             Matrix matrix = new Matrix(matrixInts, enteryIndex, exitIndex);
-
-
-            Searcher<Index, Collection<Direction>> indexIndexSearcher = new BestFirstSearch<>((goalState, initialState) ->
+            String solution=null;
+            boolean flag = false;
+            if(CacheManager.isSolutionExist(matrix))
             {
-                ArrayList<Direction> directions = new ArrayList<>();
-                State<Index> current = goalState;
-                do {
-                    if (current.getCameFrom() != null) {
-                        Index parent = current.getCameFrom().getState();
-                        Direction direction = parent.directionToWhere(current.getState());
-                        directions.add(0, direction);
-                    }
-                } while ((current = current.getCameFrom()) != null);
-                directions.forEach(direction -> System.out.print(direction.getDirection() + "->")); //for testing
-                return directions;
-            });
+                try {
+                    solution = CacheManager.getSolution(matrix);
+                    flag=true;
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    flag=false;
+                }
+            }
+            if(!flag)
+            {
+                Searcher<Index, Collection<Direction>> indexIndexSearcher = new BestFirstSearch<>((goalState, initialState) ->
+                {
+                    ArrayList<Direction> directions = new ArrayList<>();
+                    State<Index> current = goalState;
+                    do {
+                        if (current.getCameFrom() != null) {
+                            Index parent = current.getCameFrom().getState();
+                            Direction direction = parent.directionToWhere(current.getState());
+                            directions.add(0, direction);
+                        }
+                    } while ((current = current.getCameFrom()) != null);
+                    //directions.forEach(direction -> System.out.print(direction.getDirection() + "->")); //for testing
+                    return directions;
+                });
 
-            ArrayList<Direction> directions = new ArrayList<>(indexIndexSearcher.search(matrix));
+                ArrayList<Direction> directions = new ArrayList<>(indexIndexSearcher.search(matrix));
 
-            StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder stringBuilder = new StringBuilder();
 
-            for (int i = 0; i < directions.size(); i++) {
-                stringBuilder.append(directions.get(i));
-                if (i < directions.size() - 1)
-                    stringBuilder.append(",");
+                for (int i = 0; i < directions.size(); i++) {
+                    stringBuilder.append(directions.get(i));
+                    if (i < directions.size() - 1)
+                        stringBuilder.append(",");
+                }
+                solution= stringBuilder.toString();
+                CacheManager.saveSolution(matrix, solution);
+            }else {
+
             }
 
-            outToScreen.println(stringBuilder.toString());
+            outToScreen.println(solution);
             outToScreen.flush();
 
 
             ///end of my client handler
-        }catch (IOException e)
+        }catch (IOException  e)
         {
             e.printStackTrace();
         }
