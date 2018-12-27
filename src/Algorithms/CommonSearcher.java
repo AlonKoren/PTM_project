@@ -18,6 +18,7 @@ public abstract class CommonSearcher <Problem,Solution> implements Searcher <Pro
     protected abstract void addToOpenList(State<Problem> state);
 
     protected abstract void newSearcher();
+    protected abstract boolean isByPriority();
 
         @Override
     public Solution search(Searchable<Problem> s)
@@ -42,7 +43,7 @@ public abstract class CommonSearcher <Problem,Solution> implements Searcher <Pro
                 }
                 else
                 {
-                    if(openList.contains(state)&& openList.removeIf((State<Problem> sOpen) -> sOpen.equals(state) && sOpen.getCost() > state.getCost()))
+                    if(isByPriority() && openList.contains(state)&& openList.removeIf((State<Problem> sOpen) -> sOpen.equals(state) && sOpen.getCost() > state.getCost()))
                     {
                         addToOpenList(state);
                     }

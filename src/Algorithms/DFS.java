@@ -26,4 +26,9 @@ public class DFS <Problem,Solution> extends CommonSearcher <Problem,Solution>
     {
         this.openList=new Stack<>();
     }
+
+    @Override
+    protected boolean isByPriority() {
+        return false;
+    }
 }

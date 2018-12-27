@@ -27,4 +27,9 @@ public class BestFirstSearch <Problem,Solution> extends CommonSearcher <Problem,
     {
         this.openList=new PriorityQueue<>();
     }
+
+    @Override
+    protected boolean isByPriority() {
+        return true;
+    }
 }

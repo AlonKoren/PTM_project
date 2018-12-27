@@ -3,10 +3,9 @@ package Matrices;
 import Algorithms.Searchable;
 import Algorithms.State;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 
 class Index
@@ -92,18 +91,21 @@ public class Matrix implements Searchable<Index>
     @Override
     public Collection<State<Index>> getAllPossibleStates(State<Index> s)
     {
-        Collection<State<Index>> states= new ArrayList<>();
+        List<State<Index>> states= new ArrayList<>();
         Index index=s.getState();
         int currentRow=index.row;
         int currentColumn=index.column;
         if(currentRow-1 >= 0)
             states.add(new State<>(new Index(currentRow-1,currentColumn),s.getCost()+this.matrix[currentRow-1][currentColumn],s));
         if(currentRow+1 < rows)
-                states.add(new State<>(new Index(currentRow+1,currentColumn),s.getCost()+this.matrix[currentRow+1][currentColumn],s));
+            states.add(new State<>(new Index(currentRow+1,currentColumn),s.getCost()+this.matrix[currentRow+1][currentColumn],s));
         if(currentColumn-1 >= 0)
             states.add(new State<>(new Index(currentRow,currentColumn-1),s.getCost()+this.matrix[currentRow][currentColumn-1],s));
         if(currentColumn+1 < columns)
             states.add(new State<>(new Index(currentRow,currentColumn+1),s.getCost()+this.matrix[currentRow][currentColumn+1],s));
+
+        states = states.stream().filter(indexState -> indexState.getCost()<Double.MAX_VALUE).collect(Collectors.toList());
+        Collections.shuffle(states);
         return states;
     }
 }

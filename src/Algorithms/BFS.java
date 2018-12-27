@@ -27,4 +27,9 @@ public class BFS <Problem,Solution> extends CommonSearcher <Problem,Solution>
     {
         this.openList=new LinkedList<>();
     }
+
+    @Override
+    protected boolean isByPriority() {
+        return false;
+    }
 }
