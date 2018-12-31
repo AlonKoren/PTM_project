@@ -1,9 +1,8 @@
 package Algorithms;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.function.Predicate;
+
 
 public abstract class CommonSearcher <Problem,Solution> implements Searcher <Problem,Solution>
 {

@@ -1,7 +1,5 @@
 package Algorithms;
 
-import java.util.Objects;
-
 public class State <T> implements Comparable<State<T>>
 {
     private T state;    // the state represented by a T
