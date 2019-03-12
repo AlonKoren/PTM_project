@@ -11,4 +11,4 @@ While using the following elements:
 
 
 **This project was made for my Advanced Software Development Course, Which was taught by Dr. Eliahu Khalastchi at The College of Management Academic Studies .<br />
-This project was written by me with the personal guidance of Gil Yermiyah (@gilyerm).**
+This project was written by me with the personal guidance of Gil Yermiyah ([gilyerm](https://github.com/gilyerm)).**
