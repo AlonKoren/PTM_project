@@ -1,7 +1,7 @@
 # Advanced Software Development Project
 
-Building a server-side project from top to bottom, which gets search problems from the client and returns the "best" solution according to the search algorithms.
-while using the following elements:
+Building a server-side project from top to bottom, which gets search problems from the client and returns the "best" solution according to the search algorithms.<br />
+While using the following elements:
 
   - Having an emphasis on the right use on Solid, Grasp and Design Patterns principles.
   - An extended use in Java Generics.
@@ -10,5 +10,5 @@ while using the following elements:
   - Building a single Adapter for the project, in order to solve different unexpected problems.
 
 
-**This project was made for my Advanced Software Development Course.
+**This project was made for my Advanced Software Development Course.<br />
 This project was written by me with the personal guidance of Gil Yermiyah (@gilyerm).**
