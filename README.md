@@ -10,5 +10,5 @@ While using the following elements:
   - Building a single Adapter for the project, in order to solve different unexpected problems.
 
 
-**This project was made for my Advanced Software Development Course.<br />
+**This project was made for my Advanced Software Development Course, Which was taught by Dr. Eliahu Khalastchi at The College of Management Academic Studies .<br />
 This project was written by me with the personal guidance of Gil Yermiyah (@gilyerm).**
