@@ -1,9 +1,6 @@
 package server_side;
 
-import Algorithms.BestFirstSearch;
-import Algorithms.DFS;
-import Algorithms.Searcher;
-import Algorithms.State;
+import Algorithms.*;
 import Matrices.Direction;
 import Matrices.Index;
 import Matrices.Matrix;
@@ -64,7 +61,7 @@ public class MyClientHandler implements ClientHandler
             }
             if(!flag)
             {
-                Searcher<Index, Collection<Direction>> indexIndexSearcher = new DFS<>((goalState, initialState) ->
+                Searcher<Index, Collection<Direction>> indexIndexSearcher = new AStar<>((goalState, initialState) ->
                 {
                     ArrayList<Direction> directions = new ArrayList<>();
                     State<Index> current = goalState;
@@ -79,7 +76,7 @@ public class MyClientHandler implements ClientHandler
                     return directions;
                 });
                 Collection<Direction> search = indexIndexSearcher.search(matrix);
-                ArrayList<Direction> directions = new ArrayList<>(search);
+                ArrayList<Direction> directions = new ArrayList<>(search!=null?search:new ArrayList<>());
 
                 StringBuilder stringBuilder = new StringBuilder();
 

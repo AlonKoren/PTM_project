@@ -1,5 +1,6 @@
 package Matrices;
 
+import Algorithms.GoalSearchable;
 import Algorithms.Searchable;
 import Algorithms.State;
 
@@ -7,7 +8,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class Matrix implements Searchable<Index>
+public class Matrix implements GoalSearchable<Index>
 {
     private int rows;
     private int columns;
@@ -73,5 +74,10 @@ public class Matrix implements Searchable<Index>
         states = states.stream().filter(indexState -> indexState.getCost()<Double.MAX_VALUE).collect(Collectors.toList());
         Collections.shuffle(states);
         return states;
+    }
+
+    @Override
+    public State<Index> getGoalState() {
+        return new State<>(enteryIndex,0,null);
     }
 }

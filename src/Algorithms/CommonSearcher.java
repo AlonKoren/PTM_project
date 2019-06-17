@@ -7,7 +7,7 @@ import java.util.HashSet;
 public abstract class CommonSearcher <Problem,Solution> implements Searcher <Problem,Solution>
 {
     protected Collection<State<Problem>> openList;
-    private BackTrace <Problem,Solution> trace;
+    protected BackTrace <Problem,Solution> trace;
     public CommonSearcher(BackTrace <Problem,Solution> trace)
     {
        newSearcher();
@@ -49,7 +49,8 @@ public abstract class CommonSearcher <Problem,Solution> implements Searcher <Pro
                 }
             }
         }
-        throw new RuntimeException("openList empty");
-//        return null;
+
+//        throw new RuntimeException("openList empty");
+        return null;
     }
 }
