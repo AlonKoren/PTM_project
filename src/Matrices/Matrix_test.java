@@ -15,7 +15,7 @@ public class Matrix_test
         {
             for(int n=0;n<=10;n++)
             {
-                int[][] matrix1= new int[n][n];
+                double[][] matrix1= new double[n][n];
                 System.out.println(n+" on "+ n);
                 for (int i = 0; i < n ; i++)
                 {

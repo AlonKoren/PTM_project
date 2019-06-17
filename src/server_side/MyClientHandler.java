@@ -1,6 +1,7 @@
 package server_side;
 
 import Algorithms.BestFirstSearch;
+import Algorithms.DFS;
 import Algorithms.Searcher;
 import Algorithms.State;
 import Matrices.Direction;
@@ -33,12 +34,13 @@ public class MyClientHandler implements ClientHandler
             readInputsAndSend(userInput, outToServer, "end");
 
             String stringClientInput = stringWriter.getBuffer().toString();
+            System.out.println("from client:"+stringClientInput);
             String[] split = stringClientInput.split(System.lineSeparator());
-            int[][] matrixInts = new int[split.length][split[0].split(",").length];
+            double[][] matrixInts = new double[split.length][split[0].split(",").length];
             for (int i = 0; i < matrixInts.length; i++) {
                 String[] split1 = split[i].split(",");
                 for (int j = 0; j < split1.length; j++) {
-                    matrixInts[i][j] = Integer.parseInt(split1[j]);
+                    matrixInts[i][j] = Double.parseDouble(split1[j]);
                 }
             }
             String enteryLine = userInput.readLine();
@@ -62,7 +64,7 @@ public class MyClientHandler implements ClientHandler
             }
             if(!flag)
             {
-                Searcher<Index, Collection<Direction>> indexIndexSearcher = new BestFirstSearch<>((goalState, initialState) ->
+                Searcher<Index, Collection<Direction>> indexIndexSearcher = new DFS<>((goalState, initialState) ->
                 {
                     ArrayList<Direction> directions = new ArrayList<>();
                     State<Index> current = goalState;
@@ -76,8 +78,8 @@ public class MyClientHandler implements ClientHandler
                     //directions.forEach(direction -> System.out.print(direction.getDirection() + "->")); //for testing
                     return directions;
                 });
-
-                ArrayList<Direction> directions = new ArrayList<>(indexIndexSearcher.search(matrix));
+                Collection<Direction> search = indexIndexSearcher.search(matrix);
+                ArrayList<Direction> directions = new ArrayList<>(search);
 
                 StringBuilder stringBuilder = new StringBuilder();
 

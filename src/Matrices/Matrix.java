@@ -11,24 +11,24 @@ public class Matrix implements Searchable<Index>
 {
     private int rows;
     private int columns;
-    private int[][] matrix;
+    private double[][] matrix;
     private Index enteryIndex;
     private Index exitIndex;
 
 
     public Matrix()
     {
-        this(new int[0][0],null,null);
+        this(new double[0][0],null,null);
     }
 
-    public Matrix(int[][] matrix,Index enteryIndex,Index exitIndex)
+    public Matrix(double[][] matrix,Index enteryIndex,Index exitIndex)
     {
         this(matrix.length,
                 (matrix.length>0)?matrix[0].length:0,
                 matrix,enteryIndex,exitIndex);
     }
 
-    private Matrix(int rows, int columns, int[][] matrix,Index enteryIndex,Index exitIndex)
+    private Matrix(int rows, int columns, double[][] matrix,Index enteryIndex,Index exitIndex)
     {
         this.rows = rows;
         this.columns = columns;

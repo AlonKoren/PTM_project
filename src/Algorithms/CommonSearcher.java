@@ -49,6 +49,7 @@ public abstract class CommonSearcher <Problem,Solution> implements Searcher <Pro
                 }
             }
         }
-        return null;
+        throw new RuntimeException("openList empty");
+//        return null;
     }
 }

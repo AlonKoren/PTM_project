@@ -8,8 +8,8 @@ public class Main
     {
         int port =Integer.parseInt(args[0]);
         Server server=new MySerialServer();
-        ClientHandler clientHandler=new MyTestClientHandler(new StringReverser(),new FileCacheManager());
+        ClientHandler clientHandler=new MyClientHandler(new FileCacheManager<>());
         server.open(port,clientHandler);
-        server.stop();
+//        server.stop();
     }
 }

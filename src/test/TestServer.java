@@ -18,9 +18,7 @@ public class TestServer
 		BufferedReader in=null;
 		try{
 			s=new Socket("127.0.0.1",port);
-			s.setSoTimeout(3000);
-			out=new PrintWriter(s.getOutputStream());
-			in=new BufferedReader(new InputStreamReader(s.getInputStream()));
+
 			
 			Random r=new Random() ;
 			 
