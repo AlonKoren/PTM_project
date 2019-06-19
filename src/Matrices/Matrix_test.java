@@ -15,13 +15,13 @@ public class Matrix_test
         {
             for(int n=0;n<=10;n++)
             {
-                double[][] matrix1= new double[n][n];
+                Double[][] matrix1= new Double[n][n];
                 System.out.println(n+" on "+ n);
                 for (int i = 0; i < n ; i++)
                 {
                     for (int j = 0; j < n; j++)
                     {
-                        matrix1[i][j] = random.nextInt(100);
+                        matrix1[i][j] = (double)random.nextInt(100);
                         System.out.print(matrix1[i][j]);
                         if(j<n-1)
                             System.out.print(",");

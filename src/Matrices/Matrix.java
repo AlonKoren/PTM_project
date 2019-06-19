@@ -12,24 +12,24 @@ public class Matrix implements GoalSearchable<Index>
 {
     private int rows;
     private int columns;
-    private double[][] matrix;
+    private Double[][] matrix;
     private Index enteryIndex;
     private Index exitIndex;
 
 
     public Matrix()
     {
-        this(new double[0][0],null,null);
+        this(new Double[0][0],null,null);
     }
 
-    public Matrix(double[][] matrix,Index enteryIndex,Index exitIndex)
+    public Matrix(Double[][] matrix,Index enteryIndex,Index exitIndex)
     {
         this(matrix.length,
                 (matrix.length>0)?matrix[0].length:0,
                 matrix,enteryIndex,exitIndex);
     }
 
-    private Matrix(int rows, int columns, double[][] matrix,Index enteryIndex,Index exitIndex)
+    private Matrix(int rows, int columns, Double[][] matrix,Index enteryIndex,Index exitIndex)
     {
         this.rows = rows;
         this.columns = columns;
@@ -78,6 +78,6 @@ public class Matrix implements GoalSearchable<Index>
 
     @Override
     public State<Index> getGoalState() {
-        return new State<>(enteryIndex,0,null);
+        return new State<>(exitIndex,0,null);
     }
 }

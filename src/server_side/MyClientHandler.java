@@ -7,6 +7,7 @@ import Matrices.Matrix;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class MyClientHandler implements ClientHandler
@@ -31,15 +32,19 @@ public class MyClientHandler implements ClientHandler
             readInputsAndSend(userInput, outToServer, "end");
 
             String stringClientInput = stringWriter.getBuffer().toString();
-            System.out.println("from client:"+stringClientInput);
+//            System.out.println("from client:"+stringClientInput);
             String[] split = stringClientInput.split(System.lineSeparator());
-            double[][] matrixInts = new double[split.length][split[0].split(",").length];
+            Double[][] matrixInts = new Double[split.length][split[0].split(",").length];
             for (int i = 0; i < matrixInts.length; i++) {
                 String[] split1 = split[i].split(",");
                 for (int j = 0; j < split1.length; j++) {
                     matrixInts[i][j] = Double.parseDouble(split1[j]);
                 }
             }
+//            for (int i = 0; i < matrixInts.length; i++) {
+//                System.out.println(Arrays.deepToString(matrixInts[i]));
+//            }
+
             String enteryLine = userInput.readLine();
             String exitLine = userInput.readLine();
             Index enteryIndex = new Index(enteryLine);

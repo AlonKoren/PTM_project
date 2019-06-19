@@ -59,6 +59,7 @@ public class AStar <Problem,Solution> extends CommonSearcher <Problem,Solution>{
         while(!openList.isEmpty())
         {
             State<Problem> n=popOpenList();// dequeue
+//            System.out.println(n.toString());
             closedSet.add(n);
             Collection<State<Problem>> successors=s.getAllPossibleStates(n); //however it is implemented
             n.setCost(n.getCost()+h.cost(n,searchable.getGoalState()));
@@ -81,6 +82,8 @@ public class AStar <Problem,Solution> extends CommonSearcher <Problem,Solution>{
                 }
             }
         }
+//        System.out.println("openList="+openList.size()+","+openList.toString());
+//        System.out.println("closedSet="+closedSet.size()+","+closedSet.toString());
         System.err.println("openList empty");
         return null;
     }
