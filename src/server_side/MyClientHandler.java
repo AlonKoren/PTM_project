@@ -32,7 +32,6 @@ public class MyClientHandler implements ClientHandler
             readInputsAndSend(userInput, outToServer, "end");
 
             String stringClientInput = stringWriter.getBuffer().toString();
-//            System.out.println("from client:"+stringClientInput);
             String[] split = stringClientInput.split(System.lineSeparator());
             Double[][] matrixInts = new Double[split.length][split[0].split(",").length];
             for (int i = 0; i < matrixInts.length; i++) {
@@ -41,10 +40,6 @@ public class MyClientHandler implements ClientHandler
                     matrixInts[i][j] = Double.parseDouble(split1[j]);
                 }
             }
-//            for (int i = 0; i < matrixInts.length; i++) {
-//                System.out.println(Arrays.deepToString(matrixInts[i]));
-//            }
-
             String enteryLine = userInput.readLine();
             String exitLine = userInput.readLine();
             Index enteryIndex = new Index(enteryLine);
@@ -77,7 +72,6 @@ public class MyClientHandler implements ClientHandler
                             directions.add(0, direction);
                         }
                     } while ((current = current.getCameFrom()) != null);
-                    //directions.forEach(direction -> System.out.print(direction.getDirection() + "->")); //for testing
                     return directions;
                 });
                 Collection<Direction> search = indexIndexSearcher.search(matrix);
@@ -98,9 +92,6 @@ public class MyClientHandler implements ClientHandler
 
             outToScreen.println(solution);
             outToScreen.flush();
-
-
-            ///end of my client handler
         }catch (IOException  e)
         {
             e.printStackTrace();

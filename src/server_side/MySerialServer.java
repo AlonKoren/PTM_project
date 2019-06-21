@@ -20,7 +20,6 @@ public class MySerialServer implements Server
 	@Override
 	public void open(int port, ClientHandler c)
 	{
-		// TODO Auto-generated method stub
 		this.port=port;
 		this.ch=c;
 		this.stop=false;
@@ -30,7 +29,6 @@ public class MySerialServer implements Server
 	@Override
 	public void stop()
 	{
-		// TODO Auto-generated method stub
 		this.stop=true;
 	}
 

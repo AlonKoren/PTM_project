@@ -1,4 +1,8 @@
-package server_side;
+package mytest;
+
+import server_side.CacheManager;
+import server_side.ClientHandler;
+import server_side.Solver;
 
 import java.io.*;
 
@@ -16,7 +20,6 @@ public class MyTestClientHandler implements ClientHandler
 	@Override
 	public void handleClient(InputStream inFromClient, OutputStream outToClient) 
 	{
-		// TODO Auto-generated method stub
 		BufferedReader userInput=new BufferedReader(new InputStreamReader(inFromClient));
 		PrintWriter outToScreen=new PrintWriter(outToClient);
 		readInputsAndSend(userInput, outToScreen,"end");

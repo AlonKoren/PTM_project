@@ -53,18 +53,16 @@ public class AStar <Problem,Solution> extends CommonSearcher <Problem,Solution>{
     public Solution search(Searchable<Problem> s) {
         GoalSearchable<Problem> searchable=(GoalSearchable<Problem>)s;
         newSearcher();
-        double nCost,stateCost;
         openList.add(s.getInitialState());
         HashSet<State> closedSet=new HashSet<State>();
         while(!openList.isEmpty())
         {
-            State<Problem> n=popOpenList();// dequeue
-//            System.out.println(n.toString());
+            State<Problem> n=popOpenList();
             closedSet.add(n);
-            Collection<State<Problem>> successors=s.getAllPossibleStates(n); //however it is implemented
+            Collection<State<Problem>> successors=s.getAllPossibleStates(n);
             n.setCost(n.getCost()+h.cost(n,searchable.getGoalState()));
             if(s.isGoalState(n))
-                return trace.backTrace(n, s.getInitialState()); // private method, back traces through the parents            // private method, back traces through the parents
+                return trace.backTrace(n, s.getInitialState());
             for(State<Problem> state : successors){
                 state.setCost(state.getCost()+h.cost(state,searchable.getGoalState()));
                 if(!closedSet.contains(state) && ! openList.contains(state)){
@@ -82,9 +80,6 @@ public class AStar <Problem,Solution> extends CommonSearcher <Problem,Solution>{
                 }
             }
         }
-//        System.out.println("openList="+openList.size()+","+openList.toString());
-//        System.out.println("closedSet="+closedSet.size()+","+closedSet.toString());
-        System.err.println("openList empty");
         return null;
     }
 }

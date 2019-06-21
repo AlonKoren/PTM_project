@@ -49,8 +49,6 @@ public abstract class CommonSearcher <Problem,Solution> implements Searcher <Pro
                 }
             }
         }
-        System.err.println("openList empty");
-//        throw new RuntimeException("openList empty");
         return null;
     }
 }

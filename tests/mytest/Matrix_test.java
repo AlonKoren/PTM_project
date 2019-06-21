@@ -1,6 +1,8 @@
-package Matrices;
+package mytest;
 
 import Algorithms.*;
+import Matrices.Index;
+import Matrices.Matrix;
 
 import java.util.ArrayList;
 import java.util.Random;

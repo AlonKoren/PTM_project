@@ -10,7 +10,6 @@ public class FileCacheManager<Problem,Solution>  implements CacheManager<Problem
 	public boolean isSolutionExist(Problem problem) {
 		File f = new File("./FileCacheManager/");
 		f.mkdirs();
-		// TODO Auto-generated method stub
 		try
 		{
             boolean b = problemSolutionHashMap.containsKey(problem);
@@ -29,7 +28,6 @@ public class FileCacheManager<Problem,Solution>  implements CacheManager<Problem
 	public Solution getSolution(Problem problem) throws IOException, ClassNotFoundException {
 		File f = new File("./FileCacheManager/");
 		f.mkdirs();
-		// TODO Auto-generated method stub
         Solution solution = problemSolutionHashMap.getOrDefault(problem, null);
         if(solution ==null){
             ObjectInputStream in=new ObjectInputStream(new FileInputStream("./FileCacheManager/"+problem+".txt"));
@@ -44,7 +42,6 @@ public class FileCacheManager<Problem,Solution>  implements CacheManager<Problem
 	public void saveSolution(Problem problem, Solution solution) throws IOException {
 		File f = new File("./FileCacheManager/");
 		f.mkdirs();
-		// TODO Auto-generated method stub
         problemSolutionHashMap.put(problem,solution);
         ObjectOutputStream out=new ObjectOutputStream(new FileOutputStream("./FileCacheManager/"+problem+".txt"));
 		out.writeObject(solution);

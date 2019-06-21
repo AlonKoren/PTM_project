@@ -1,5 +1,6 @@
 package test;
 
+import mytest.MyTestClientHandler;
 import server_side.*;
 
 public class TestSetter {
